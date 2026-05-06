@@ -1,3 +1,6 @@
+Claro — segue o código completo para copiar e colar:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,6 +52,14 @@
       background-color: #0056b3;
     }
 
+    #btnTudoLivre {
+      background-color: #dc3545;
+    }
+
+    #btnTudoLivre:hover:not(:disabled) {
+      background-color: #a71d2a;
+    }
+
     #status {
       margin-top: 20px;
       font-weight: bold;
@@ -73,18 +84,34 @@
     SINCRONIZAR ALERGÊNICOS
   </button>
 
+  <button id="btnTudoLivre" onclick="colocarTudoLivre()">
+    COLOCAR TUDO EM LIVRE
+  </button>
+
   <div id="status"></div>
 
   <script>
     const statusDiv = document.getElementById("status");
     const btnPratos = document.getElementById("btnPratos");
     const btnAlergenicos = document.getElementById("btnAlergenicos");
+    const btnTudoLivre = document.getElementById("btnTudoLivre");
+
+    function desabilitarBotoes() {
+      btnPratos.disabled = true;
+      btnAlergenicos.disabled = true;
+      btnTudoLivre.disabled = true;
+    }
+
+    function habilitarBotoes() {
+      btnPratos.disabled = false;
+      btnAlergenicos.disabled = false;
+      btnTudoLivre.disabled = false;
+    }
 
     async function chamarEndpoint(url, nome) {
       statusDiv.innerText = `Executando ${nome}...`;
 
-      btnPratos.disabled = true;
-      btnAlergenicos.disabled = true;
+      desabilitarBotoes();
 
       try {
         const response = await fetch(url, { method: 'GET' });
@@ -98,8 +125,7 @@
       } catch (error) {
         statusDiv.innerText = `❌ Erro ao executar ${nome}: ${error.message}`;
       } finally {
-        btnPratos.disabled = false;
-        btnAlergenicos.disabled = false;
+        habilitarBotoes();
       }
     }
 
@@ -116,7 +142,24 @@
         "Sincronização de Alergênicos"
       );
     }
+
+    function colocarTudoLivre() {
+      const confirmado = confirm(
+        "Tem certeza que deseja colocar tudo em LIVRE?"
+      );
+
+      if (!confirmado) {
+        statusDiv.innerText = "Operação cancelada pelo usuário.";
+        return;
+      }
+
+      chamarEndpoint(
+        "https://n8n-railway.etiquetas.io/webhook/ibira-tudo-livre",
+        "Colocar Tudo em Livre"
+      );
+    }
   </script>
 
 </body>
 </html>
+```
