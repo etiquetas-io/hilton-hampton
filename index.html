@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>PULLMAN IBIRAPUERA - PRATOS & ALERGÊNICOS</title>
+  <title>HILTON HAMPSTON - PRATOS & ALERGÊNICOS</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -71,7 +71,7 @@
     alt="Pullman Logo"
   >
 
-  <h1>PULLMAN IBIRAPUERA - PRATOS & ALERGÊNICOS PARA ETIQUETAS ELETRÔNICAS</h1>
+  <h1>HILTON HAMPSTON - PRATOS & ALERGÊNICOS PARA ETIQUETAS ELETRÔNICAS</h1>
 
   <button id="btnPratos" onclick="atualizarPratos()">
     SINCRONIZAR PRATOS
@@ -128,14 +128,14 @@
 
     function atualizarPratos() {
       chamarEndpoint(
-        "https://n8n-railway.etiquetas.io/webhook/pullman-ibira-pratos",
+        "https://n8n-railway.etiquetas.io/webhook/hilton-gru",
         "Sincronização de Pratos"
       );
     }
 
     function atualizarAlergenicos() {
       chamarEndpoint(
-        "https://n8n-railway.etiquetas.io/webhook/pullman-ibira-alergenicos",
+        "https://n8n-railway.etiquetas.io/webhook/hilton-gru-alergenicos",
         "Sincronização de Alergênicos"
       );
     }
@@ -151,7 +151,7 @@
       }
 
       chamarEndpoint(
-        "https://n8n-railway.etiquetas.io/webhook/ibira-tudo-livre",
+        "https://n8n-railway.etiquetas.io/webhook/hiltron-gru-livre",
         "Colocar Tudo em Livre"
       );
     }
